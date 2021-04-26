@@ -1,0 +1,10 @@
+# Project exclude paths
+/spring_demo_1_ioc/target/
+/spring_demo_2_factory/target/
+/spring_demo_3_di/target/
+/spring_demo_4_mvc/target/
+/spring_demo_5_annotation/target/
+/spring_demo_6_mvc/target/
+/spring_demo_7_tx/target/
+/spring_demo_8_admin/target/
+/spring_demo_9_aop/target/

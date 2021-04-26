@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="spring_demo_9_aop" />
+        <module name="spring_demo_9_aop_test" />
+        <module name="spring_demo_2_factory" />
+        <module name="spring_demo_5_annotation" />
+        <module name="spring_demo_4_mvc" />
+        <module name="spring_demo_1_ioc" />
+        <module name="spring_demo_3_di" />
+        <module name="spring_demo_8_admin" />
+        <module name="spring_demo_6_mvc" />
+        <module name="spring_demo_7_tx" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="123p" target="1.8" />
+      <module name="spring_demo_4_mvctest" target="1.8" />
+      <module name="spring_demo_6" target="1.8" />
+      <module name="spring_demo_6_mvctest" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

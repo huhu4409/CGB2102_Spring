@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.jt</groupId>
+    <artifactId>CGB2102_Spring</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>spring_demo_1_ioc</module>
+        <module>spring_demo_2_factory</module>
+        <module>spring_demo_3_di</module>
+        <module>spring_demo_4_mvc</module>
+        <module>spring_demo_5_annotation</module>
+        <module>spring_demo_6_mvc</module>
+        <module>spring_demo_7_tx</module>
+        <module>spring_demo_8_admin</module>
+        <module>spring_demo_9_aop</module>
+        <module>spring_demo_9_aop_test</module>
+    </modules>
+
+</project>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--1.静态工厂实例化对象的写法， 方法必须是static-->
+    <bean id="calendar1" class="com.jt.factory.StaticFactory" factory-method="getCalendar"></bean>
+
+    <!--2.实例化工厂，2.1将工厂交给spring容器管理  2.2通过对象调用方法-->
+    <bean id="instanceFactory" class="com.jt.factory.InstanceFactory"></bean>
+    <bean id="calendar2" factory-bean="instanceFactory" factory-method="getCalendar"></bean>
+
+    <!--3.spring工厂模式-->
+    <bean id="calendar3" class="com.jt.factory.SpringFactory"></bean>
+
+    <!--4.测试单例多例 通过scope属性控制独享的单例和多例
+        scope="prototype" 多例设置
+        scope="singleton" 缺省值 单例设置
+        lazy-init="default/false" 懒加载不生效 true 懒加载生效
+        原则：只要是多例对象，都是懒加载。懒加载属性设置只对单例对象有效
+        关于懒加载说明：一般服务器对象应该先行创建，用户直接使用即可
+        多例对象：用户使用时创建，同时将对象的生命周期交给使用者管理，Spring不负责维护对象的生命周期
+        -->
+    <!--<bean id="user" class="com.jt.pojo.User" scope="prototype"></bean>-->
+
+    <bean id="user" class="com.jt.pojo.User" init-method="init" destroy-method="destroy"></bean>
+</beans>

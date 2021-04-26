@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="user" class="com.jt.pojo.User">
+        <property name="id" value="10010"></property>
+        <property name="name" value="贝塔"></property>
+    </bean>
+
+    <!--2.让注解生效，开启包扫描；包路径特定：给定包路径，则自动扫描同包及子孙包中的类
+        base-package：根据指定的包路径，查找注解
+        写方式：多个包路径用,分隔-->
+    <!--<context:component-scan base-package="com.jt.controller,com.jt.service,com.jt.dao"></context:component-scan>-->
+    <context:component-scan base-package="com.jt"></context:component-scan>
+
+    <!--情景1：执行扫描Controller注解的注解
+        属性1：use-default-filters="true" 默认条件下扫描包中的所有注解 默认规则
+              use-default-filters="false" 按照用户指定的规则扫描注解-->
+    <!--<context:component-scan base-package="com.jt" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"></context:include-filter>
+    </context:component-scan>-->
+
+    <!--<context:component-scan base-package="com.jt" use-default-filters="true">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"></context:include-filter>
+    </context:component-scan>-->
+
+    <!--业务需求2：不想扫描@controller注解-->
+    <!--<context:component-scan base-package="com.jt" use-default-filters="false">
+        &lt;!&ndash;通过包扫描，可以扫描其他注解，但不扫描@Controller注解&ndash;&gt;
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+    </context:component-scan>-->
+
+</beans>
