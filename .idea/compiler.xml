@@ -11,6 +11,7 @@
         <module name="spring_demo_2_factory" />
         <module name="spring_demo_5_annotation" />
         <module name="spring_demo_4_mvc" />
+        <module name="spring_demo_10_ache" />
         <module name="spring_demo_1_ioc" />
         <module name="spring_demo_3_di" />
         <module name="spring_demo_8_admin" />

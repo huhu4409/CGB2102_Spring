@@ -19,6 +19,7 @@
         <module>spring_demo_8_admin</module>
         <module>spring_demo_9_aop</module>
         <module>spring_demo_9_aop_test</module>
+        <module>spring_demo_10_ache</module>
     </modules>
 
 </project>
