@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 //          2.基本类型中没有多余的方法，对后续代码取值有问题
 @Data
 @Accessors(chain = true)
+@Tablename("user")
 public class User {
 
     //页面name属性 id/name/hobby
