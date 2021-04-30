@@ -2,21 +2,26 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="spring_demo_9_aop" />
         <module name="spring_demo_9_aop_test" />
-        <module name="spring_demo_2_factory" />
-        <module name="spring_demo_5_annotation" />
-        <module name="spring_demo_4_mvc" />
-        <module name="spring_demo_10_ache" />
-        <module name="spring_demo_1_ioc" />
+        <module name="spring_demo_9_aop" />
+        <module name="springboot_demo_3" />
         <module name="spring_demo_3_di" />
-        <module name="spring_demo_8_admin" />
+        <module name="springboot_demo_1" />
+        <module name="spring_demo_2_factory" />
+        <module name="spring_demo_1_ioc" />
+        <module name="springboot_demo_2_test" />
         <module name="spring_demo_6_mvc" />
+        <module name="springboot_demo_2" />
+        <module name="spring_demo_4_mvc" />
         <module name="spring_demo_7_tx" />
+        <module name="spring_demo_8_admin" />
+        <module name="spring_demo_10_ache" />
+        <module name="spring_demo_5_annotation" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -25,5 +30,13 @@
       <module name="spring_demo_6" target="1.8" />
       <module name="spring_demo_6_mvctest" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="springboot_demo_1" options="-parameters" />
+      <module name="springboot_demo_2" options="-parameters" />
+      <module name="springboot_demo_2_test" options="-parameters" />
+      <module name="springboot_demo_3" options="-parameters" />
+    </option>
   </component>
 </project>

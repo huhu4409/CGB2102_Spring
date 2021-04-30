@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户</title>
+</head>
+<body>
+    <h1>用户测试代码</h1>
+    <!--从服务器中获取数据 表达式 ${服务器中的key}-->
+    <h3 th:text="${id}"></h3>
+    <h3 th:text="${name}"></h3>
+    <hr/>
+    <form action="/user/addUser" method="POST">
+        <table border="1px"  cellspacing="0" align="center" width="350px" style="margin-top: 50px">
+            <tr align="center">
+                <td colspan="2"><h1>表格数据提交</h1></td>
+            </tr>
+            <tr>
+                <td>ID:</td>
+                <td><input id="id" name="id" type="text"/></td>
+            </tr>
+            <tr>
+                <td>姓名:</td>
+                <td><input id="name" name="name" type="text"/></td>
+            </tr>
+            <tr>
+                <td>宠物ID:</td>
+                <td><input id="dog.id" name="dogId" type="text"/></td>
+            </tr>
+            <tr>
+                <td>宠物:</td>
+                <td><input id="dog.name" name="dogName" type="text"/></td>
+            </tr>
+            <tr>
+                <td>爱好:</td>
+                <td>
+                    <input type="text" name="hobby">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><button type="submit">提交</button></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

@@ -1,0 +1,25 @@
+#配置模版工具类
+spring:
+  thymeleaf:
+    #设置页面前缀
+    prefix: classpath:/templates/
+    #设置页面后缀
+    suffix: .html
+    #是否使用缓存
+    cache: false
+  datasource:
+    url: jdbc:mysql://localhost:3306/jt_dbuser?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+    username: root
+    password: root
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com.jt.mapper: debug
+
+#配置端口号
+server:
+  port: 8090

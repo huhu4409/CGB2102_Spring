@@ -1,0 +1,42 @@
+#YML文件语法
+## 1.YML数据结构k-v结构
+## 2.k与v 需要使用 :"空格" 链接
+## 3.YML配置文件有父子级关系， 所以注意缩进项的位置
+
+#默认环境选项
+spring:
+  profiles:
+    #默认环境配置名称
+    active: test
+
+---
+
+server:
+  port: 8090  #配置端口
+  servlet:    #web项目的发布路径
+    context-path: /   #/表示根目录
+
+#定义dept属性值 YML默认支持utf-8
+dept:
+  id: 100
+  name: 公关部
+
+spring:
+  config:
+    activate:
+      on-profile: test
+
+#环境分割线
+---
+server:
+  port: 8091  #配置端口
+  servlet:    #web项目的发布路径
+    context-path: /   #/表示根目录
+dept:
+  id: 100
+  name: 公关部
+
+spring:
+  config:
+    activate:
+      on-profile: prod
