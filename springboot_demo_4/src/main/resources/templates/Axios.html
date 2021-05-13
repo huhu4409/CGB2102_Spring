@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>测试</title>
+	</head>
+	<body>
+		<div id="app">
+			用户编号：<input type="text" v-model="user.id" disabled/>
+			用户姓名：<input type="text" v-model.lazy="user.name" /><br>
+			用户年龄：<input type="text" v-model.lazy="user.age" />
+			用户性别：<input type="text" v-model.lazy="user.sex" />
+			<button @click="updateUser">更新</button>
+			<hr >
+			<!-- 用户展现的表格 -->
+			<table id="userTable" style="border-spacing: 0;margin-top: 30px;text-align: center;" align="center" width="700px" border="1px">
+				<tr>
+					<td colspan="5"><h3>用户列表</h3></td>
+				</tr>
+				<tr>
+					<th>ID</th>
+					<th>名称</th>
+					<th>年龄</th>
+					<th>性别</th>
+					<th>操作</th>
+				</tr>
+				<tr v-for="user of userList">
+					<td v-text="user.id"></td>
+					<td v-text="user.name"></td>
+					<td v-text="user.age"></td>
+					<td v-text="user.sex"></td>
+					<td>
+						<button @click="updateBtn(user)">修改</button>
+						<button @click="delUser(user)">删除</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		
+		<script src="../static/vue.js"></script>
+		<script src="../static/axios.js"></script>
+		<script>
+			const app = new Vue({
+				el: "#app",
+				data:{
+					//1.定义用户列表数据
+					userList:[],
+					//2.定义用户属性
+					user:{
+						id: '',
+						name: '',
+						age: '',
+						sex: ''
+					}
+				},
+				methods:{
+					async getUserList(){
+						const {data : res} = await axios.get("http://localhost:8090/AxiosUser/findAll")
+						this.userList = res
+					},
+					
+					updateBtn(user){
+						this.user = user;
+					},
+					
+					//更新用户信息
+					async updateUser(){
+						//更新的操作可以没有返回值
+						await axios.put("http://localhost:8090/AxiosUser/updateUser",this.user)
+						alert("更新成功")
+					},
+					
+					//删除用户
+					async delUser(user){
+						let id = user.id
+						//await axios.get("http://localhost:8090/AxiosUser/delUser?id=" + id)
+						//await axios.get("http://localhost:8090/AxiosUser/delUser/" + id)
+						await axios.delete("http://localhost:8090/AxiosUser/delUser",{
+							params: {
+								//key和value相同名称可以只写一个id
+								id: id
+							}
+						})
+						//删除之后需要将页面重新刷新
+						this.getUserList()
+						alert("删除成功")
+					}
+					
+				},
+				mounted() {
+					//当页面渲染成功之后调用
+					//调用查询用户的方法
+					this.getUserList()
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户列表</title>
+	<style>
+		#userTable{
+			border: 1px;
+			width: 700px;
+			text-align: center;
+			margin-top: 30px;
+			border-spacing: 0
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		用户编号：<input type="text" v-model="user.id" disabled/>
+		用户姓名：<input type="text" v-model.lazy="user.name"/><br>
+		用户年龄：<input type="text" v-model.lazy="user.age"/>
+		用户性别：<input type="text" v-model.lazy="user.sex"/>
+		<button @click="updateUser">更新</button>
+		<table id="userTable" align="center" border="1px">
+			<tr>
+				<td colspan="5"><h2>用户列表</h2></td>
+			</tr>
+			<tr>
+				<th>ID</th>
+				<th>姓名</th>
+				<th>年龄</th>
+				<th>性别</th>
+				<th>操作</th>
+			</tr>
+			<tr v-for="user of userList">
+				<td v-text="user.id"></td>
+				<td v-text="user.name"></td>
+				<td v-text="user.age"></td>
+				<td v-text="user.sex"></td>
+				<td>
+					<button @click="updateBtn(user)">修改</button>
+					<button @click="delUser(user)">删除</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<script src="vue.js"></script>
+	<script src="axios.js"></script>
+	<script>
+		const app = new Vue({
+			el:"#app",
+			data:{
+				userList:[],
+				user:{
+					id: '',
+					name: '',
+					age: '',
+					sex: ''
+				}
+			},
+			methods:{
+				async getUserList(){
+					const {data:res} = await axios.get("http://localhost:8090/user/findAll")
+					this.userList = res
+				},
+				updateBtn(user){
+					this.user = user;
+				},
+				async updateUser(){
+					await axios.post("http://localhost:8090/user/updateUser",this.user)
+					alert("更新成功")
+					this.getUserList()
+				},
+				async delUser(user){
+					let id = user.id
+					await axios.delete("http://localhost:8090/user/deleteUser",{
+						params:{
+							id
+						}
+					})
+					alert("删除成功")
+					this.getUserList()
+				}
+			},
+			mounted() {
+				//当页面渲染成功之后调用
+				this.getUserList()
+			}
+		})
+	</script>
+</body>
+</html>

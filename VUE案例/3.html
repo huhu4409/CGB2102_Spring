@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>loginPage</title>
+  <style>
+    body {
+      height: 100vh;
+      min-height: 680px;
+      background-repeat: no-repeat;
+      background-image: linear-gradient(to top, #330867 0%, #30cfd0 100%);
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  </style>
+  <link rel="stylesheet" href="loginStyle.css">
+  <script src="js/vue.js"></script>
+  <script src="js/vue-router.js"></script>
+</head>
+
+<body>
+  <div id="app">
+
+    <div class="switch">
+      <router-link to="/login" tag="div" class="logBtn">登录</router-link>
+      <router-link to="/register" tag="div" class="regBtn">注册</router-link>
+    </div>
+
+    <transition mode="out-in">
+      <router-view></router-view>
+    </transition>
+
+  </div>
+
+  <template id="loginTemp">
+    <div class="box">
+      <h2>Login</h2>
+      <form action="">
+        <div class="item">
+          <input type="text" required>
+          <label>Username</label>
+        </div>
+        <div class="item">
+          <input type="password" required>
+          <label>Password</label>
+        </div>
+        <button class="btn">submit</button>
+      </form>
+    </div>
+  </template>
+
+  <template id="registerTemp">
+    <div class="box">
+      <h2>register</h2>
+      <form action="">
+        <div class="item">
+          <input type="text" required>
+          <label>Username</label>
+        </div>
+        <div class="item">
+          <input type="password" required>
+          <label>Password</label>
+        </div>
+        <div class="item">
+          <input type="text" required>
+          <label>Real Name</label>
+        </div>
+        <div class="item">
+          <input type="text" required>
+          <label>E-mail</label>
+        </div>
+        <button class="btn">submit</button>
+      </form>
+    </div>
+  </template>
+  <script src="js/vm.js"></script>
+</body>
+
+</html>

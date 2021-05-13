@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>事件绑定操作</title>
+	</head>
+	<body>
+		<div id="app" @click="addNum()">
+			<!-- {{msg}} -->
+			{{num}}
+			<!-- <button v-on:click="addNum">自增</button>	 -->
+			<!-- 精简版  -->
+			<button @click.stop="addNum">自增</button>
+			
+			<hr />
+			<a href="http://www.baidu.com" @click="getMsg">百度</a>
+			<!-- 需求：阻止默认的行为 则使用prevent属性 -->
+			<a href="http://www.baidu.com" @click.prevent="getMsg">不跳转百度</a>
+			
+			<!-- 同步提交到百度  改为异步的方式 -->
+			<form action="http://www.baidu.com" method="get">
+				<input name="name" />
+				<input type="submit" value="提交" @click.prevent="submit()"/>
+			</form>
+			
+			<hr >
+			<input type="text" name="name" @keyup.enter="hanlder" value="回车键弹起有效"/><br />
+			<input type="text" name="name" @keydown.enter="hanlder" value="回车键按下有效"/><br />
+			<input type="text" name="name" @keyup.space="space" value="空格弹起有效"/><br />
+			
+			<hr >
+			
+			数值1：<input type="number" v-model="num1" value="" /><br>
+			数值2：<input type="number" v-model="num2" @keyup.enter="sums()" value="" />
+			<input type="submit" @click="sums"  value="计算"/><br>
+			总数：{{sum}}
+		</div>
+		<script src="../js/vue.js"></script>
+		<script type="text/javascript">
+			const app = new Vue({
+				el: "#app",
+				data: {
+					msg: 'abc',
+					num: 100,
+					num1: '',
+					num2: '',
+					sum: 0
+				},
+				methods:{
+					addNum(){
+						this.num+=1;
+					},
+					getMsg(){
+						alert("跳转成功")
+					},
+					hanlder(){
+						alert("回车键触发")
+					},
+					space(){
+						alert("空格键触发")
+					},
+					sums(){
+						this.sum = parseInt(this.num1) + parseInt(this.num2);
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

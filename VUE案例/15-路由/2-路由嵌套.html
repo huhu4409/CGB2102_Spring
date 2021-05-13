@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>路由嵌套</title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 2.添加路由链接 
+				router-link：vue会将标签解析为a标签
+				to：vue会解析为href属性
+			-->
+			<router-link to="/supermarket">商超</router-link>
+			<router-link to="/zoo">动物园</router-link>
+			
+			<!-- 3.定义路由占位符 当用户点击路由时，在该位置展现页面 -->
+			<router-view ></router-view>
+		</div>
+				
+		<!-- 定义商场组件 -->
+		<template id="shoppingTem">
+			<div>
+				<h1>我是商场组件</h1>
+				<router-link to="/supermarket/game">游戏厅</router-link>
+				<router-link to="/supermarket/drink">奶茶店</router-link>
+				<router-link to="/supermarket/shoe">鞋店</router-link>
+				<router-link to="/supermarket/clothing">服装店</router-link>
+				<router-view></router-view>
+			</div>
+		</template>
+		
+		<!-- 定义动物园组件 -->
+		<template id="zooTem">
+			<div>
+				<h1>我是动物园组件</h1>
+				<router-link to="/zoo/te">天鹅湖</router-link>
+				<router-link to="/zoo/jsh">金丝猴馆</router-link>
+				<router-link to="/zoo/shs">狮虎山</router-link>
+				<router-view></router-view>
+			</div>
+		</template>
+		
+		<!-- 定义商超中游戏厅的组件 -->
+		<template id="shoppingGame">
+			<div>
+				<h2>我是游戏厅组件</h2>
+				<router-link to="/supermarket/game/tw">跳舞机</router-link>
+				<router-link to="/supermarket/game/jc">机车</router-link>
+				<router-link to="/supermarket/game/lq">篮球</router-link>
+				<router-view></router-view>
+			</div>
+		</template>
+		<!-- 1.引入js -->
+		<script src="../js/vue.js"></script>
+		<script src="../js/vue-router.js"></script>
+		<script>
+			/* 4.定义组件变量 */
+			/* const user = {
+				template: '<h1>我是user组件</h1>'
+			}
+			const dept = {
+				template: '<h1>我是dept组件</h1>'
+			} */
+			
+			//定义商超组件变量
+			const shopping = {
+				template: "#shoppingTem"
+			}
+			//定义动物园组件变量
+			const zoo = {
+				template: "#zooTem"
+			}
+			
+			//定义商超中游戏厅组件变量
+			const game = {
+				template: '#shoppingGame'
+			}
+			//定义商超中游戏厅中跳舞机、机车、篮球组件变量
+			const tw= {
+				template: '<h3>我是跳舞机组件</h3>'
+			}
+			const jc = {
+				template: '<h3>我是机车组件</h3>'
+			}
+			const lq = {
+				template: '<h3>我是篮球组件</h3>'
+			}
+			
+			//定义商超中奶茶店、鞋店、服装店组件变量
+			const drink = {
+				template: '<h2>我是奶茶店组件</h2>'
+			}
+			const shoe = {
+				template: '<h2>我是鞋店组件</h2>'
+			}
+			const clothing = {
+				template: '<h2>我是服装店组件</h2>'
+			}
+			
+			//定义动物园中天鹅湖、金丝猴、狮虎山组件变量
+			const te = {
+				template: '<h2>我是天鹅湖组件</h2>'
+			}
+			const jsh = {
+				template: '<h2>我是金丝猴组件</h2>'
+			}
+			const shs = {
+				template: '<h2>我是狮虎山组件</h2>'
+			}
+			
+			/* 5.配置路由规则 */
+			/* const router = new VueRouter({
+				//定义规则
+				routes:[
+					// 实行重定向redirect 默认为dept
+					{path:'/', redirect:'/dept'},
+					{path:'/user', component:user},
+					{path:'/dept', component:dept}
+				]
+			}) */
+			
+			const router = new VueRouter({
+				routes:[
+					//定义商超路由规则
+					{path:'/supermarket',component:shopping,
+					children:[
+						{path:'/supermarket/game',component:game,
+						children:[
+							{path:'/supermarket/game/tw',component:tw},
+							{path:'/supermarket/game/jc',component:jc},
+							{path:'/supermarket/game/lq',component:lq},
+						]},
+						{path:'/supermarket/drink',component:drink},
+						{path:'/supermarket/shoe',component:shoe},
+						{path:'/supermarket/clothing',component:clothing}
+					]},
+					
+					//定义动物园路由规则
+					{path:'/zoo',component:zoo,
+					children:[
+						{path:'/zoo/te',component:te},
+						{path:'/zoo/jsh',component:jsh},
+						{path:'/zoo/shs',component:shs}
+					]},
+				]
+			})
+			
+			/* 6.将路由主键挂载到Vue中 */
+			const app = new Vue({
+				el:"#app",
+				//key和value值相同，可以只写一个
+				router
+			})
+		</script>
+	</body>
+</html>

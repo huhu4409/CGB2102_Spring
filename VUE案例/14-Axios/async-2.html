@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>async</title>
+	</head>
+	<body>
+		<script src="../js/axios.js"></script>
+		<script>
+			//添加基本路径配置
+			axios.defaults.baseURL = "http://localhost:8090/"
+			
+			//1.定义语法 async标识方法 
+			async function getData(){
+				//await 标识ajax请求  可以直接接收返回值对象
+				const result = await axios.get("getAxios")
+				alert(result.data)
+			}
+			
+			async function getData1(){
+				//data: 是对象中的属性
+				//解构赋值: 将返回的对象的数据 采用指定的对象接收
+				//value 表示接收返回值结果.
+				const {data : value} = await axios.get("getAxios")
+				alert(value)
+			}
+			
+			async function getData2(){
+				const {data : value} = await axios.get("getAxiosParam/100")
+				alert(value)
+			}
+			
+			//调用函数
+			getData2()
+		</script>
+	</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>事件绑定操作</title>
+	</head>
+	<body>
+		<div id="app">	
+			数值1：<input type="number" v-model.number="num1" value="" /><br>
+			数值2：<input type="number" v-model.number="num2" @keyup.enter="sums()" value="" />
+			<input type="submit" @click="sums"  value="计算"/><br>
+			总数：{{sum}}
+			
+			<hr >
+			<!-- 去除多余的空格 -->
+			数据：<input type="text" v-model.trim="msg"/><br>
+			数据长度：{{msg.length}}
+			
+			<hr >
+			<!-- 当dom元素失去焦点时触发 -->
+			<input type="text" v-model.lazy="names"/><br>
+			{{names}}
+			
+			<hr >
+			<!-- 需求: 需要对一个字符串进行反转操作
+				用户输入内容 abc 
+				要求的输出内容   cba
+				思路: 字符串拆分为数组  将数组进行反转  将数组拼接成串			
+				reverse(): 将数组进行反转
+				join("连接符") 将数组拼接为字符串
+			-->
+			用户输入：<input type="text" v-model.lazy="gege" /><br>
+			常规调用：{{gege.split('').reverse().join('')}}<br>
+			
+			<!-- 添加计算属性的名称 -->
+			<!-- 
+				计算属性和方法的区别
+				1.方法调用时每次都会执行.
+				2.计算属性调用时有缓存
+				3.如果数据需要被大量的引用则使用计算属性更好效率高
+			 -->
+			计算属性的调用：{{reverseMethod}}<br>
+			方法的调用：{{reverseMe()}}
+			
+		</div>
+		<script src="../js/vue.js"></script>
+		<script type="text/javascript">
+			const app = new Vue({
+				el: "#app",
+				data: {
+					num1: '',
+					num2: '',
+					sum: 0,
+					msg:'',
+					names:'',
+					gege:''
+				},
+				//定义计算属性的key
+				computed:{
+					//指定计算属性的名称 要求有返回值
+					reverseMethod(){
+						return this.gege.split('').reverse().join('')
+					}
+				},
+				methods:{
+					sums(){
+						this.sum = this.num1+this.num2;
+					},
+					reverseMe(){
+						return this.gege.split('').reverse().join('')
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

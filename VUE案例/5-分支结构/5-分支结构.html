@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>分支结构测试</title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 需求：设定课程的成绩 score 根据课程的成绩进行评级
+					注意事项：v-if/v-else位置应该连续 v-else不可以单独使用
+			-->
+			<h3 v-if="score >= 90">甲</h3>		
+			<h3 v-else-if="score >= 80">乙</h3>
+			<h3 v-else-if="score >= 70">丙</h3>
+			<h3 v-else-if="score >= 60">丁</h3>
+			<h3 v-else>戊</h3>
+			
+			<!-- v-show指令 h3标签动态的展现 跟一个布尔类型的值
+				style="display: none 如果数据频繁的切换 则v-show效率更高"-->
+			<h3  v-show="isShow">展示一个小战士</h3>
+			<!-- 通过按钮切换状态 -->
+			<button @click="isShow = !isShow">切换</button>
+		</div>
+		<script src="../js/vue.js"></script>
+		<script type="text/javascript">
+			const app = new Vue({
+				el: "#app",
+				data:{
+					score: 100,
+					isShow: true
+				},
+				methods:{
+					
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <link rel="stylesheet"
+    type="text/css" 
+    href="bootstrap.min.css"
+    />
+</head>
+<body>
+	<div id="up" class="container" style="width: 500px;display: none;">
+		<form name="bg" action="/updateUserInfo" method="post" style="align:center">
+			<h3>请输入更新的用户信息</h3>
+			<div class="form-group">
+				<label>ID：</label>				
+				<input type="text" class="form-control" autocomplete="off" placeholder="请输入ID..." name="id" id="upId"/>
+			</div>
+		    <div class="form-group">
+		    	<label>名称：</label>
+		    	
+		    	<input type="text" class="form-control" autocomplete="off" placeholder="请输入姓名..." name="name" id="upUserName"/>
+		    </div>
+		    
+		    <div class="form-group">
+		    	<label>年龄：</label>
+		    	<input type="number" class="form-control" autocomplete="off" placeholder="请输入年龄..." name="age" id="upAge"/><br>
+		    </div>
+		    
+		    <div class="form-group">
+		    	<label>性别：</label>
+		    	<label class="radio-inline">
+		    		<input type="radio" name="sex" id="upMale" value="男"/>男
+		    	</label>
+		    	<label class="radio-inline">
+		    		<input type="radio" name="sex" id="upFemale" value="女" />女
+		    	</label>
+		    </div>
+			<div class="form-group" style="margin-top: 10px;">
+				<button type="submit" class="btn btn-success" name="save" value="提交">提交</button>
+			</div>
+		</form>
+	</div>
+
+	<div id="del" class="container" style="width: 500px;display: none;">
+		<form name="bg" action="/delUser" method="post" style="align:center">
+			<h3>请输入删除的用户信息</h3>
+			<div class="form-group">
+				<label>ID：</label>				
+				<input type="text" class="form-control" autocomplete="off" placeholder="请输入ID..." name="id" id="delId"/>
+			</div>
+		    <div class="form-group">
+		    	<label>名称：</label>
+		    	<input type="text" class="form-control" autocomplete="off" placeholder="请输入姓名..." name="name" id="delUserName"/>
+		    </div>
+		    
+		    <div class="form-group">
+		    	<label>年龄：</label>
+		    	<input type="number" class="form-control" autocomplete="off" placeholder="请输入年龄..." name="age" id="delAge"/><br>
+		    </div>
+		    
+		    <div class="form-group">
+		    	<label>性别：</label>
+		    	<label class="radio-inline">
+		    		<input type="radio" name="sex" id="delMale" value="男"/>男
+		    	</label>
+		    	<label class="radio-inline">
+		    		<input type="radio" name="sex" id="delFemale" value="女" />女
+		    	</label>
+		    </div>
+			<div class="form-group" style="margin-top: 10px;">
+				<button type="submit" class="btn btn-success" name="save" value="提交">提交</button>
+			</div>
+		</form>
+	</div>
+
+    <table id="app" style="border-spacing: 0;margin-top: 30px;text-align: center;" align="center" width="700px" border="1px">
+        <tr>
+            <td colspan="4">用户列表</td>
+            <td>操作</td>
+        </tr>
+        <tr>
+            <th>ID</th>
+            <th>名称</th>
+            <th>年龄</th>
+            <th>性别</th>
+            <th>
+                <input type="button" value="修改" onclick="display('up')"/>
+                <input type="button" value="删除" onclick="display('del')"/>
+            </th>
+        </tr>
+    </table>
+	
+	<script src="jquery-3.6.0.min.js"></script>
+	<script>
+	    $(function(){
+	        $.get("/findAllUser",function(result){
+	            console.log(result)
+	            for(user of result){
+	                var id = user.id;
+	                var name = user.name;
+	                var age = user.age;
+	                var sex = user.sex;
+	                var tr = "<tr><td>" + id + "</td><td>" + name + "</td><td>" + age + "</td><td>" + sex + "</td></tr>";
+	                $("#app").append(tr);
+	            }
+	        })
+	    })
+		function display(id){
+			var target = document.getElementById(id)
+			if(target.style.display=="none"){
+				target.style.display="";
+			}else{
+				target.style.display="none";
+			}
+		}
+	</script>
+</body>
+</html>

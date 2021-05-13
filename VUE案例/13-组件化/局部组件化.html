@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>局部组件</title>
+	</head>
+	<body>
+		<div id="app">
+			<compons></compons>
+			<compons></compons>
+			<compons></compons>
+			<compons></compons>
+		</div>
+		
+		<template id="compons">
+			<div>
+				<h2>{{msg}}</h2>
+			</div>
+		</template>
+		
+		<script src="../js/vue.js"></script>
+		<script>
+			
+			//1.定义组件对象
+			const compon = {
+				data(){
+					return{
+						msg:'54455'
+					}
+				},
+				template: '#compons'
+			}
+			
+			/* 局部组件的写法 */
+			const app = new Vue({
+				el: "#app",
+				//vue对象中的组件  组件名称/组件对象
+				components: {
+					//js简化写法 如果key与value值相同,则可以简化.
+					compons : compon
+				}
+			})
+		</script>
+	</body>
+</html>

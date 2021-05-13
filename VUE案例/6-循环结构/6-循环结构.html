@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>循环结构测试</title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- <h3 v-for="item in hobbys">{{item}}</h3> -->
+			<h3 v-for="item in hobbys" v-text="item">{{item}}</h3>
+			<!-- 1.带下标的循环遍历语法2个参数参数1：遍历的数据 2.下标-->
+			<h3 v-for="(item,index) in hobbys" v-text="item" :key="index"></h3>
+			
+			<!-- 循环遍历对象 -->
+			<div v-for="user in userList" :key="user.id">
+				<span v-text="user.id"></span>
+				<span v-text="user.name"></span>
+			</div>
+		</div>
+		<script src="../js/vue.js"></script>
+		<script type="text/javascript">
+			const app = new Vue({
+				el: "#app",
+				data:{
+					hobbys:['吃','喝','玩','乐','学','运动'],
+					userList:[{
+						id:1,
+						name:'花木兰'
+					},{
+						id:2,
+						name:'王昭君'
+					},{
+						id:3,
+						name:'貂蝉'
+					}]
+				},
+				methods:{
+					
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>路由规则</title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 2.添加路由链接 
+				router-link：vue会将标签解析为a标签
+				to：vue会解析为href属性
+			-->
+			<router-link to="/user">用户</router-link>
+			<router-link to="/dept">部门</router-link>
+			
+			<!-- 3.定义路由占位符 当用户点击路由时，在该位置展现页面 -->
+			<router-view ></router-view>
+			
+		</div>
+	
+		<!-- 1.引入js -->
+		<script src="../js/vue.js"></script>
+		<script src="../js/vue-router.js"></script>
+		<script>
+			/* 4.定义组件变量 */
+			const user = {
+				template: '<h1>我是user组件</h1>'
+			}
+			const dept = {
+				template: '<h1>我是dept组件</h1>'
+			}
+			
+			/* 5.配置路由规则 */
+			const router = new VueRouter({
+				//定义规则
+				routes:[
+					// 实行重定向redirect 默认为dept
+					{path:'/', redirect:'/dept'},
+					{path:'/user', component:user},
+					{path:'/dept', component:dept}
+				]
+			}) 
+			
+			
+			/* 6.将路由主键挂载到Vue中 */
+			const app = new Vue({
+				el:"#app",
+				//key和value值相同，可以只写一个
+				router
+			})
+		</script>
+	</body>
+</html>

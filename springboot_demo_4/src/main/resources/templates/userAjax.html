@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+	<!-- 1.引入函数类库
+		2.使用模板工具类中的静态资源文件默认的路径都在static目录下-->
+	<script src="/jquery-3.6.0.min.js"></script>
+	<script>
+		// 函数式编程
+		$(function(){
+			//让整个页面加载完成之后在执行，以后所有的操作都应该在函数内完成
+			//alert("狗屁！！！");
+			/**
+			 * 常见ajax用法：
+			 * 1.$.get(url地址，提交数据，回调函数，返回值类型)
+			 * 2.$.post()
+			 */
+			/**
+			 * 业务需求：要求向后端服务器发起请求，/findAjaxUser  之后将返回值结果()，进行页面解析
+			 */
+			/*$.get("/findAjaxUser","id=1001&name=tom",function(result){ */
+			/* 参数说明：
+				1.字符串拼接：
+					key=value&key2=value2
+						例如：id=18&name=tom
+				2.js对象的写法：
+					语法{key:value,key2:value2}
+					例如：{id:1,name:'tom'}
+				可以使用object对象去指向代替
+			*/
+		   var object={
+			   id:1001,
+			   name:'tom147852'
+		   }
+			$.get("findAjaxUser",object,function(result){
+				//1.result是服务器返回的结果
+				//2.将返回值的结果进行循环遍历
+				//console.log(result)
+				/* for(var i =0;i<result.length;i++){
+					var user = result[i];
+					console.log(user)
+				} */
+				//关键字 in index 代表遍历的下标
+				/* for(index in result){
+					var user = result(index);
+					console.log(user)
+				} */
+				/* for(user of result){
+					console.log(user);
+				} */
+				for(user of result){
+					var id = user.id;
+					var name = user.name;
+					var age = user.age;
+					var sex = user.sex;
+					var tr = "<tr align='center'><td>" + id +"</td><td>" + name +"</td><td>" + age +"</td><td>" + sex +"</td></tr>";
+					$("#userTable").append(tr);
+				}
+			})
+			
+			$.post("findAjaxUser",object,function(){
+				console.log("post请求")
+			})
+			
+			$.getJSON("findAjaxUser",object,function(){
+				console.log("返回值都是json格式的")
+			})
+			
+			//最为基本的ajax
+			$.ajax({
+				type:"get",//请求类型设置
+				url:'findAjaxUser',
+				//请求参数
+				data:{
+					id:1,
+					name:'xiaoming'
+				},
+				//成功之后的回调函数
+				success:function(result){
+					console.log("请求成功")
+				},
+				error:function(result){
+					console.log("请求失败")
+				}
+			})
+			
+		})
+	</script>
+</head>
+<body>
+    <table id="userTable" border="1px" align="center" width="500px" style="border-spacing: 0;text-align: center">
+        <tr>
+            <td colspan="4"><h3>用户列表</h3></td>
+
+        </tr>
+        <tr>
+            <th>ID</th>
+            <th>名称</th>
+            <th>年龄</th>
+            <th>性别</th>
+        </tr>
+    </table>
+</body>
+</html>

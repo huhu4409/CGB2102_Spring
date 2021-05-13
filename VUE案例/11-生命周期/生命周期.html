@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			用户名:<input type="text" v-model.lazy="name" />
+			<button type="button" @click="destroyed">销毁</button>
+		</div>
+		
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el: "#app",
+				data:{
+					name: ''
+				},
+				methods:{
+					destroyed(){
+						//手动销毁VUE对象 vue中的对象API使用$调用
+						this.$destroy()
+					}
+				},
+				//在实例初始化之后，数据观测 (data observer) 和 event/watcher 事件配置之前被调用
+				beforeCreate() {
+					console.log("实例初始化之后调用beforeCreate")
+				},
+				
+				//在实例创建完成后被立即调用
+				created() {
+					console.log("实例创建后调用created")
+				},
+				
+				//在挂载开始之前被调用：相关的 render 函数首次被调用
+				beforeMount() {
+					console.log("挂载开始之前调用beforeMount调用")
+				},
+				
+				//实例被挂载后调用，这时 el 被新创建的 vm.$el 替换了
+				mounted() {
+					console.log("实例被挂载后调用Mounted")
+				},
+				
+				//数据更新时调用，发生在虚拟 DOM 打补丁之前，
+				beforeUpdate(){
+					console.log("数据更新时调用beforeUpdate")
+				},
+				
+				//数据修改之后
+				updated() {
+					console.log("数据修改之后调用update")
+				},
+				
+				//实例销毁之前调用。在这一步，实例仍然完全可用。
+				beforeDestroy() {
+					console.log("实例销毁后调用beforeDestroy")
+				},
+				
+				//实例销毁后调用,该钩子被调用后，对应 Vue 实例的所有指令都被解绑，所有的事件监听器被移除，所有的子实例也都被销毁
+				destroyed() {
+					console.log("实例销毁后调用destroyed")
+				},
+			})
+		</script>
+	</body>
+</html>

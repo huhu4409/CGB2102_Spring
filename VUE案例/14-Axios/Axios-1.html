@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="../js/axios.js"></script>
+		<script>
+			let url2 = "http://localhost:8090/getAxiosParams"
+			let url1 = "http://localhost:8090/getAxios"
+			let url = "http://localhost:8090/getAxiosParam"
+			axios.get(url1).then(res => {
+				alert(res.data)
+			})
+			
+			//加参数
+			axios.get(url2 + '?id=300').then(res => {
+				alert(res.data)
+			})
+			
+			//restful风格
+			axios.get(url + '/200').then(res => {
+				alert(res.data)
+			}) 
+			
+			//利用params对象的方式传递参数
+			axios.get(url2,{
+				params: {
+					id : 100
+				}
+			}).then(res => {
+				alert(res.data)
+			})
+			
+			/* post/put请求说明：
+				如果采用对象的方式进行数据传输，则发起请求时
+				自动的转化为JSON格式进行数据传输*/
+			
+			axios.post('http://localhost:8090/addParam',{
+				id: 100,
+				name: 'tomcat'
+			}).then(result => {
+				alert("id:" + result.data.id + "  name:" + result.data.name)
+			})
+			
+			/**
+			 * 通过form表单的方式提交数据
+			 */
+			//1.定义form表单对象
+			let params = new URLSearchParams();
+			params.append("id",100)
+			params.append("name","tomcat猫")
+			axios.post('http://localhost:8090/addParamForm',params)
+			.then(res =>{
+				alert(res.data.id +":" + res.data.name)
+			})
+			
+			
+			//配置ajax的基本路径
+			axios.defaults.baseURL = "http://localhost:8090/"
+			axios.get("getAxios").then(res => {
+				alert(res.data + "000000")
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>数组用法测试</title>
+	</head>
+	<body>
+		<div id="app">
+			<span v-for="item in array" v-text="item"></span><br>
+			追加的数据:<input type="text" v-model="data" /><br>
+			<button @click="push">追加</button>
+			<button @click="pop">删除</button>
+			<button @click="shift">首删</button>
+			<button @click="unshift">首加</button>
+			<button @click="splice">替换</button>
+			<button @click="sort">排序</button>
+			<button @click="reverse">倒排</button>
+		</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:"#app",
+				data:{
+					array:['东皇太一','韩信','百里玄策','马超',],
+					data: ''
+				},
+				methods:{
+					push(){
+						//将数据添加到数组最后一位
+						this.array.push(this.data)
+					},
+					pop(){
+						//移除最后一个元素
+						this.array.pop()
+					},
+					shift(){
+						//删除第一个元素
+						this.array.shift()
+					},
+					unshift(){
+						//数组前加一个元素
+						this.array.unshift(this.data)
+					},
+					splice(){
+						/* 关于参数说明 参数1：操作数据起始位置 index
+									   参数2：操作数据的个数
+									   参数3：要替换的值
+									   将从下标0开始的2个数当做一个整体都进行替换*/
+						this.array.splice(0,2,this.data)
+					},
+					sort(){
+						this.array.sort()
+					},
+					reverse(){
+						this.array.reverse()
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

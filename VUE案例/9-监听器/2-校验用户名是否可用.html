@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>校验用户名</title>
+	</head>
+	<body>
+		<div id="app">
+			用户名：<input type="text" v-model.lazy="userName" />
+			<span>{{tip}}</span>
+		</div>
+		
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el: "#app",
+				data:{
+					userName: '',
+					tip: ''
+				},
+				methods:{
+					checkName(val){
+						var that = this
+						/* 这里的that需要指向vm,
+						由于定时器函数中的this指向window
+						因此这里不能使用this */
+						setTimeout(()=>{
+							/* ===比==更加严格，==有类型转换，===没有类型转换，会比较类型是否相同 */
+							if(val === 'admin'){
+								that.tip = "用户已存在"
+							}else if(val === 'tom'){
+								that.tip = "用户已存在"
+							}else{
+								that.tip = '用户名可以使用'
+							}
+						},2000)
+					}
+				},
+				watch:{
+					userName(val){
+						this.checkName(val);
+						this.tip = '用户名正在校验...'
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

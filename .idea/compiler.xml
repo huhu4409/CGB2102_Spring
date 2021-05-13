@@ -8,7 +8,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="spring_demo_9_aop_test" />
+        <module name="springboot_demo_4_test1" />
         <module name="spring_demo_9_aop" />
+        <module name="springboot_demo_4" />
         <module name="springboot_demo_3" />
         <module name="spring_demo_3_di" />
         <module name="springboot_demo_1" />
@@ -20,6 +22,7 @@
         <module name="spring_demo_4_mvc" />
         <module name="spring_demo_7_tx" />
         <module name="spring_demo_8_admin" />
+        <module name="springboot_demo_4_test" />
         <module name="spring_demo_10_ache" />
         <module name="spring_demo_5_annotation" />
       </profile>
@@ -37,6 +40,9 @@
       <module name="springboot_demo_2" options="-parameters" />
       <module name="springboot_demo_2_test" options="-parameters" />
       <module name="springboot_demo_3" options="-parameters" />
+      <module name="springboot_demo_4" options="-parameters" />
+      <module name="springboot_demo_4_test" options="-parameters" />
+      <module name="springboot_demo_4_test1" options="-parameters" />
     </option>
   </component>
 </project>

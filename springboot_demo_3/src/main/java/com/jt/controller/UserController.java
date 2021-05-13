@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Arrays;
 
@@ -13,6 +14,7 @@ import java.util.Arrays;
 public class UserController {
     @Autowired
     private UserService service;
+
     /**使用对象的方式接收数据
      URL地址：/addUser url参数：id:name:hobby：游泳 hobby：游戏 hobby：敲代码
      对象赋值的原理：

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>监听器用法</title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 需求，用户名的拼接 -->
+			姓氏：<input type="text" v-model="firstName" /><br>
+			名字：<input type="text" v-model="lastName" /><br>
+			全称：<input type="text" v-model="fullName" />
+		</div>
+		
+		
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el: "#app",
+				data:{
+					firstName: '',
+					lastName: '',
+					fullName: ''
+				},
+				/* 配置监听器
+				 key 被监听的属性的名称 方法的结构
+				 value 当监听器生效时 value就是属性的数据*/
+				watch:{
+					firstName(value){
+						this.fullName = value + this.lastName
+					},
+					lastName(value){
+						this.fullName = this.firstName + value
+					}
+				},
+				methods:{
+					
+				}
+			})
+		</script>
+	</body>
+</html>
