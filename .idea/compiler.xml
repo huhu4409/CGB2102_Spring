@@ -14,6 +14,7 @@
         <module name="springboot_demo_3" />
         <module name="spring_demo_3_di" />
         <module name="springboot_demo_1" />
+        <module name="jt_common" />
         <module name="spring_demo_2_factory" />
         <module name="spring_demo_1_ioc" />
         <module name="springboot_demo_2_test" />
@@ -22,6 +23,7 @@
         <module name="spring_demo_4_mvc" />
         <module name="spring_demo_7_tx" />
         <module name="spring_demo_8_admin" />
+        <module name="jt_manage" />
         <module name="springboot_demo_4_test" />
         <module name="spring_demo_10_ache" />
         <module name="spring_demo_5_annotation" />
@@ -36,6 +38,8 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="jt_common" options="-parameters" />
+      <module name="jt_manage" options="-parameters" />
       <module name="springboot_demo_1" options="-parameters" />
       <module name="springboot_demo_2" options="-parameters" />
       <module name="springboot_demo_2_test" options="-parameters" />

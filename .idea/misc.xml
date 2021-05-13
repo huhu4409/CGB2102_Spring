@@ -17,6 +17,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/123p/pom.xml" />
+        <option value="$PROJECT_DIR$/jt_common/pom.xml" />
         <option value="$PROJECT_DIR$/spring_demo_4_mvctest/pom.xml" />
         <option value="$PROJECT_DIR$/spring_demo_6/pom.xml" />
         <option value="$PROJECT_DIR$/spring_demo_6_mvctest/pom.xml" />

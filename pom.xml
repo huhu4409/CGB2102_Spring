@@ -21,6 +21,8 @@
         <module>spring_demo_9_aop_test</module>
         <module>spring_demo_10_ache</module>
         <module>springboot_demo_4</module>
+        <module>jt</module>
+        <module>jt_common</module>
     </modules>
 
 </project>

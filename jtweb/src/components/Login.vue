@@ -4,20 +4,20 @@
       <div class="login_box">
         <!-- 头像区域-->
         <div class="avatar_box">
-          <img src="../assets/logo.png" alt="VUE图片" />
+          <img src="../assets/logo3.gif" alt="VUE图片" />
         </div>
 
         <!-- 登陆表单区域 ref代表当前表单引用对象-->
-        <el-form ref="loginFormRef" label-width="0" class="login_form">
-          <el-form-item >
-            <el-input  prefix-icon="iconfont iconuser"></el-input>
+        <el-form :model="login_form" :rules="rules" ref="loginFormRef" label-width="0" class="login_form">
+          <el-form-item prop="username">
+            <el-input  prefix-icon="iconfont iconuser" v-model="login_form.username"></el-input>
           </el-form-item>
-          <el-form-item>
-            <el-input  prefix-icon="iconfont iconsuo" type="password"></el-input>
+          <el-form-item prop="password">
+            <el-input  prefix-icon="iconfont iconsuo" type="password" v-model="login_form.password"></el-input>
           </el-form-item>
           <el-form-item class="btns">
-             <el-button type="primary">登录</el-button>
-             <el-button type="info">重置</el-button>
+             <el-button type="primary" @click="login">登录</el-button>
+             <el-button type="info" @click="resetBtn">重置</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -27,7 +27,42 @@
 <!-- 定义JS变量 -->
 <script>
 export default {
-
+  //定义组件的属性，需要有返回值
+  data(){
+    return {
+      //如果是form表单提交 一般都会采用对象封装
+      login_form: {
+        username:'',
+        password:''
+      },
+      rules:{
+        username:[
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
+        ],
+        password:[
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          { min: 6, max: 15, message: '长度在 6 到 15 个字符', trigger: 'blur' }
+        ],
+      }
+    }
+  },
+  methods:{
+    resetBtn() {
+      //获取当前表单对象，之后重置数据
+      this.$refs.loginFormRef.resetFields();
+    },
+    login(){
+      //要在登录前 校验数据是否填写完成;解构赋值async await
+      this.$refs.loginFormRef.validate(async vaild =>{
+      //如果没有校验成功，则直接结束调用
+        if(!vaild) return
+        //发起ajax请求
+        const {data : result} = await this.$http.post('/user/login',this.login_form)
+        
+      })
+    }
+  }
 }
 </script>
 
